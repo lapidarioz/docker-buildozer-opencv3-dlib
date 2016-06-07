@@ -5,7 +5,7 @@ then
         mkdir -p /home/kivy/.buildozer/tmp/archives
 fi
 
-if [ -e packages.txt ] 
+if [ -e packages.txt ]
 echo Checking required packages
 
 then
@@ -20,7 +20,7 @@ for package in $PACKAGES; do
                 echo $package installed
         else
                 echo $package not installed
-                need_install=("${need_install[@]} $package") 
+                need_install=("${need_install[@]} $package")
         fi
 done
 if [ ${#need_install[@]} -gt 0 ]
@@ -28,5 +28,5 @@ if [ ${#need_install[@]} -gt 0 ]
 then
         apt-get update && apt-get -o dir::cache::archives="/home/kivy/.buildozer/tmp/archives" install -y ${need_install[@]}
 fi
-
-runuser -u kivy buildozer $@
+sudo -u kivy -i bash -c 'pip install --target=/src/.buildozer/applibs dlib'
+sudo -u kivy -i bash -c 'cd /src && buildozer android debug'

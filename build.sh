@@ -1,1 +1,2 @@
-sudo docker build $1 -t extra/kivy-buildozer .
+#!/bin/bash
+docker build -t kivy-app .
